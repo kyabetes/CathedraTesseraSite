@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathedra Tessera</title>
+    <style>
+        @font-face {
+            font-family: 'DrawnOldEnglish-jDmy';
+            src: url('DrawnOldEnglish-jDmy.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'FlyingHollander';
+            src: url('FlyingHollander.ttf') format('truetype');
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+
+        @keyframes fadeOut {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+        body {
+            background-color: #1E1E22;
+            color: #F1EFF7;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        h1 {
+            font-family: 'FlyingHollander', Times, serif;
+            font-size: 3.7rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: #F1EFF7;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+        }
+
+        .home-button {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    const app = document.getElementById('app');
+
+    function renderPage(content) {
+        app.style.animation = 'fadeOut 1s forwards';
+        setTimeout(() => {
+            app.innerHTML = content;
+            app.style.animation = 'fadeIn 1s forwards';
+        }, 1000);
+    }
+
+    function renderHomePage() {
+        renderPage(`
+        <h1>Cathedra Tessera</h1>
+        <nav>
+            <a href="#" onclick="renderShowsPage()">shows</a> -
+            <a href="#" onclick="renderMerchPage()">merch</a> -
+            <a href="#" onclick="renderAboutPage()">about</a>
+        </nav>
+    `);
+    }
+
+    function renderShowsPage() {
+        renderPage(`
+        <p>no scheduled shows right now, check again soon.</p>
+        <a href="#" class="home-button" onclick="renderHomePage()">home</a>
+    `);
+    }
+
+    function renderMerchPage() {
+        renderPage(`
+        <p>coming soon.</p>
+        <a href="#" class="home-button" onclick="renderHomePage()">home</a>
+    `);
+    }
+
+    function renderAboutPage() {
+        renderPage(`
+        <div class="about-content">
+            <p>Cathedra Tessera is a nugaze / dark shoegaze solo project from New England,
+             founded in 2024. It is a story about religion, existentialism, betrayal,
+              and acceptance, told through music. The first chapter of the story,
+              the <em>Angel in Grey</em> EP, is coming out soon.<br><br>Thank you.</p>
+        </div>
+        <a href="#" class="home-button" onclick="renderHomePage()">home</a>
+    `);
+    }
+
+    renderHomePage();
+</script>
+</body>
+</html>
